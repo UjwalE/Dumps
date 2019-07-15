@@ -1,0 +1,34 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
+
+//Add this new class file
+public class RandomJAVAFileDONOTPUSH {
+
+    public static Set<String> DISALLOWED = null;
+
+    static {
+        FileReader reader= null;
+        Properties p=null;
+        try {
+            reader = new FileReader("db.properties");
+            p=new Properties();
+            p.load(reader);
+            String sites = p.getProperty("DISALLOWED");
+            DISALLOWED = new HashSet<String>(Arrays.asList(sites.split(";")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+    //Use this code where you want to check for the data;
+    /*boolean flag = false;
+    String s = "the Content which you are searching for";
+    Iterator<String> itr = RandomJAVAFileDONOTPUSH.DISALLOWED.iterator();
+        while(itr.hasNext()){
+                if(s.contains(itr.next())) flag = true;
+                }*/
+
